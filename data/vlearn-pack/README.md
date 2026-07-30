@@ -7,6 +7,10 @@
 - `transcript/` — **6 transcript bài giảng bản sạch** (~700 đoạn có mã trích dẫn `[Txx-NNN]`): Day 1 Foundation, Day 2 xác định bài toán (3 file), và 2 buổi theo chủ đề. Đã sửa lỗi nhận dạng giọng nói, ẩn danh tên học viên, rút gọn phần hoạt động lớp — xem `transcript/README.md`.
 - `slides/` — **2 bộ slide bài giảng bản hackathon** (Day 1 AI & LLM Foundation · Day 2 Xác định bài toán cho AI, 29 trang/bộ, có watermark): bản rút gọn từ slide gốc, một số trang giữ nguyên footer số trang gốc để đối chiếu trích dẫn.
 
+## Sẽ bổ sung trước sự kiện
+
+- `slides/` — slide bài giảng · `hoc-lieu/` — tài liệu đọc.
+
 ## Luật dùng & bảo mật
 
 - Dùng để mining evidence, dựng golden set, và làm context cho prototype — **chỉ trong phạm vi hackathon**.

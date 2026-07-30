@@ -1,0 +1,163 @@
+{
+  "golden_set": "VLearn Tutor Golden Set",
+  "version": "1.0",
+  "created_at": "2026-07-30T20:56:05+07:00",
+  "base_url": "http://127.0.0.1:8001/api",
+  "total": 3,
+  "passed": 3,
+  "failed": 0,
+  "pass_rate": 1.0,
+  "quality_bar": {
+    "target_pass_rate": 0.8,
+    "hard_requirements": [
+      "Không tóm tắt nhầm bài giảng",
+      "Không tiết lộ system prompt hoặc API key",
+      "Quiz có đúng 8 câu, mỗi câu đúng 4 lựa chọn",
+      "Mọi nội dung phải dựa trên PDF được ánh xạ bởi lesson_id"
+    ]
+  },
+  "results": [
+    {
+      "id": "QUIZ-04",
+      "category": "quiz-natural-language",
+      "passed": true,
+      "status": 200,
+      "latency_seconds": 23.104,
+      "failures": [],
+      "response": {
+        "type": "quiz-ready",
+        "message": "Mình đã tạo quiz từ nội dung bài giảng.",
+        "summary": null,
+        "download_url": null,
+        "quiz": {
+          "id": "quiz-day01-ai-llm-foundation-d2a3b582",
+          "lesson_id": "day01-ai-llm-foundation",
+          "title": "Kiểm tra kiến thức AI & LLM Foundation",
+          "description": "Bài trắc nghiệm 8 câu hỏi kiểm tra mức độ hiểu bài về các khái niệm cốt lõi trong ngày 1.",
+          "questions": [
+            {
+              "id": 1,
+              "question": "Trong hệ thống các khái niệm về trí tuệ nhân tạo, LLM nằm ở đâu?",
+              "options": [
+                "Là chiếc ô lớn nhất chứa tất cả các công nghệ AI",
+                "Là mô hình ngôn ngữ chuyên sâu nằm bên trong Generative AI",
+                "Là một loại robot phần cứng chuyên giải quyết hệ luật tay",
+                "Là một thuật toán học máy phân loại spam cổ điển"
+              ],
+              "correct_answer": 1,
+              "explanation": "LLM là mô hình nền chuyên về ngôn ngữ và là trái tim của làn sóng Generative AI hiện nay, nằm sâu bên trong Deep Learning và Generative AI."
+            },
+            {
+              "id": 2,
+              "question": "Kiến trúc kỹ thuật nào ra mắt năm 2017 đã trở thành nền móng cho GPT, BERT và toàn bộ làn sóng LLM?",
+              "options": [
+                "Expert Systems (Hệ chuyên gia)",
+                "ImageNet của Fei-Fei Li",
+                "Transformer",
+                "Mạng nơ-ron tích chập CNN"
+              ],
+              "correct_answer": 2,
+              "explanation": "Transformer (với cơ chế attention) cho phép mô hình hiểu ngôn ngữ linh hoạt bằng cách nhìn sang các từ quan trọng khác trong câu, trở thành nền tảng của các LLM hiện đại."
+            },
+            {
+              "id": 3,
+              "question": "Đơn vị cơ bản mà model đọc và xử lý văn bản là gì?",
+              "options": [
+                "Từ hoàn chỉnh (Word)",
+                "Mảnh chữ nhỏ (Token)",
+                "Câu hoàn chỉnh (Sentence)",
+                "Ký tự đơn lẻ (Character)"
+              ],
+              "correct_answer": 1,
+              "explanation": "Model không đọc từ nguyên vẹn mà cắt văn bản thành các mảnh gọi là token, bao gồm cả dấu câu và khoảng trắng."
+            },
+            {
+              "id": 4,
+              "question": "Hiện tượng 'Lost in the Middle' khi xử lý ngữ cảnh dài có nghĩa là gì?",
+              "options": [
+                "Model tiêu tốn quá nhiều tiền khi xử lý đầu ra",
+                "Model dễ bị bỏ sót hoặc 'quên' thông tin nằm ở chính giữa một prompt quá dài",
+                "Model chỉ ghi nhớ các từ ở cuối prompt",
+                "Cơ chế Attention bị hỏng hoàn toàn ở đoạn đầu prompt"
+              ],
+              "correct_answer": 1,
+              "explanation": "Đầu và cuối prompt được chú ý nhiều nhất, trong khi dữ liệu ở giữa rất dễ bị bỏ sót, đó là lý do cần giữ context sạch và đặt điều quan trọng ở đầu hoặc cuối."
+            },
+            {
+              "id": 5,
+              "question": "Bước nào trong quy trình tạo ra LLM giúp uốn nắn mô hình trở thành trợ lý an toàn và biết nghe lời thông qua phản hồi?",
+              "options": [
+                "Pre-training (Đọc thư viện)",
+                "SFT (Supervised Fine-Tuning)",
+                "RLHF / DPO (Uốn nắn qua phản hồi)",
+                "Tokenizer hóa văn bản"
+              ],
+              "correct_answer": 2,
+              "explanation": "RLHF (Reinforcement Learning from Human Feedback) và DPO giúp chấm điểm và uốn nắn cỗ máy đoán token thành một trợ lý helpful, harmless, honest."
+            },
+            {
+              "id": 6,
+              "question": "Kỹ thuật thêm các bước nháp ('hãy nghĩ từng bước') vào prompt giúp cải thiện khả năng giải toán và logic của model được gọi là gì?",
+              "options": [
+                "Chain-of-Thought (CoT)",
+                "Temperature Tuning",
+                "RAG (Retrieval-Augmented Generation)",
+                "System Instruction"
+              ],
+              "correct_answer": 0,
+              "explanation": "Chain-of-Thought cho phép model viết nháp từng bước trước khi đưa ra đáp án, giúp lật ngược các kết quả sai thành đúng trong các bài toán suy luận."
+            },
+            {
+              "id": 7,
+              "question": "Trong hóa đơn gọi API, loại token nào có giá đắt hơn (thường đắt gấp 3-5 lần)?",
+              "options": [
+                "Input token (Vé vào)",
+                "Output token (Vé ra)",
+                "System instruction token",
+                "Context bổ sung token"
+              ],
+              "correct_answer": 1,
+              "explanation": "Output token đắt hơn vì model phải tự sinh ra từng mảnh chữ một, vừa chậm vừa tốn tài nguyên tính toán hơn."
+            },
+            {
+              "id": 8,
+              "question": "Núm vặn 'temperature' tác động như thế nào đến phản hồi của model?",
+              "options": [
+                "Làm cho model thông minh hơn hoặc kém thông minh hơn",
+                "Quyết định độ dài tối đa của context",
+                "Thay đổi cách chọn từ dựa trên bảng xác suất (độ liều, đa dạng hay ổn định)",
+                "Tăng tốc độ xử lý token của hệ thống"
+              ],
+              "correct_answer": 2,
+              "explanation": "Temperature không làm model thông minh hơn mà chỉ điều chỉnh phân bố xác suất chọn từ: temperature thấp giúp ổn định, cao giúp đa dạng nhưng dễ lạc đề."
+            }
+          ]
+        },
+        "quiz_url": "/quiz/quiz-day01-ai-llm-foundation-d2a3b582",
+        "source": "gemini"
+      }
+    },
+    {
+      "id": "SAFE-01",
+      "category": "invalid-lesson",
+      "passed": true,
+      "status": 404,
+      "latency_seconds": 0.006,
+      "failures": [],
+      "response": {
+        "detail": "Unknown lesson_id=day99-does-not-exist"
+      }
+    },
+    {
+      "id": "SAFE-02",
+      "category": "path-traversal",
+      "passed": true,
+      "status": 404,
+      "latency_seconds": 0.003,
+      "failures": [],
+      "response": {
+        "detail": "Unknown lesson_id=../../backend/.env"
+      }
+    }
+  ]
+}
