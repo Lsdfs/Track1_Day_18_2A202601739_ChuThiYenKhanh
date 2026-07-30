@@ -1,5 +1,13 @@
 # Mini Hackathon AI — Batch 03
 
+| Thành viên | Vai trò | Công việc |
+|---|---|---|
+| Vũ Quang Tùng | Spec | Viết và cập nhật spec.md, thiết kế JTBD, flow sản phẩm |
+| Chu Thị Yến Khanh | Evidence | Thu thập khảo sát, tổng hợp số liệu, lưu log bằng chứng |
+| Vũ Quang Tùng | Prompt | Thiết kế prompt, xây dựng golden set, kiểm tra các case lỗi |
+| Diêm Công Thành | Code | Xây dựng prototype, tích hợp API AI, xử lý workflow |
+| Chu Thị Yến Khanh | Demo | Chuẩn bị slide, kịch bản demo, quay backup và kiểm tra flow |
+
 **SPEC → Prototype → Demo.** Đây không phải cuộc thi code — đây là cuộc thi **tư duy sản phẩm AI**.
 
 - Thời lượng: **1,5 ngày** (một ngày build + một buổi demo)
