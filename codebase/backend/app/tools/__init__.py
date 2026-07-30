@@ -1,5 +1,9 @@
-from app.tools.quiz_tool import generate_quiz
-from app.tools.summary_tool import build_hardcoded_summary, is_summary_request
+from app.tools.lesson_summary_tool import get_lesson_content, resolve_lesson
+from app.services.quiz_store import save_quiz
 
-TOOL_REGISTRY = {"summarize_lesson": build_hardcoded_summary, "generate_quiz": generate_quiz}
-__all__ = ["TOOL_REGISTRY", "build_hardcoded_summary", "generate_quiz", "is_summary_request"]
+TOOL_REGISTRY = {
+    "get_current_lesson_content": get_lesson_content,
+    "save_current_lesson_quiz": save_quiz,
+}
+
+__all__ = ["TOOL_REGISTRY", "get_lesson_content", "resolve_lesson", "save_quiz"]

@@ -8,7 +8,8 @@ class Settings(BaseSettings):
     port: int = 8000
     frontend_origin: str = "http://127.0.0.1:5173"
     gemini_api_key: str = ""
-    gemini_model: str = "gemini-2.0-flash"
+    gemini_model: str = "gemini-3.5-flash"
+    gemini_fallback_model: str = "gemini-3.5-flash-lite"
     ai_timeout_seconds: int = 30
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 

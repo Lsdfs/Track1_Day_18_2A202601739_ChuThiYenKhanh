@@ -1,9 +1,13 @@
-from app.tools.summary_tool import build_hardcoded_summary, is_summary_request
+from app.tools.lesson_summary_tool import get_lesson_content, resolve_lesson
 
 
-def test_summary_intent() -> None:
-    assert is_summary_request("Tóm tắt cho tôi bài giảng hiện tại")
+def test_lesson_alias_resolves_to_manifest_file() -> None:
+    lesson = resolve_lesson("d2")
+    assert lesson["id"] == "day02-business-problem-for-ai"
+    assert lesson["pdf_path"].name == "d2-slide-hackathon.pdf"
 
 
-def test_summary_content() -> None:
-    assert len(build_hardcoded_summary().sections) >= 5
+def test_pdf_tool_extracts_content() -> None:
+    lesson = get_lesson_content("day02-business-problem-for-ai")
+    assert lesson["page_count"] > 0
+    assert "Problem Statement" in lesson["content"]
