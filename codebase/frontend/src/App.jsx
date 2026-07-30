@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowLeft, BookOpen, Bot, CheckCircle2, ChevronDown, Download,
   FileText, GraduationCap, Menu, MessageCircle, RotateCcw, Send,
@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { lessonData } from "./lessonData";
-import { sendTutorMessage } from "./services/aiTutorApi";
+import { getQuizById, sendTutorMessage } from "./services/aiTutorApi";
 
 const LESSON_ID = lessonData.id;
 const createId = () => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
@@ -186,11 +186,28 @@ function QuizPage() {
   const navigate = useNavigate();
   const { quizId } = useParams();
   const storedQuiz = sessionStorage.getItem(`vlearn:quiz:${quizId}`);
-  const quiz = storedQuiz ? JSON.parse(storedQuiz) : null;
+  const [quiz, setQuiz] = useState(() => storedQuiz ? JSON.parse(storedQuiz) : null);
+  const [quizLoading, setQuizLoading] = useState(!storedQuiz);
+  const [quizError, setQuizError] = useState("");
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  if (!quiz) {
+  useEffect(() => {
+    if (quiz) return;
+    getQuizById(quizId)
+      .then(fetchedQuiz => {
+        sessionStorage.setItem(`vlearn:quiz:${fetchedQuiz.id}`, JSON.stringify(fetchedQuiz));
+        setQuiz(fetchedQuiz);
+      })
+      .catch(error => setQuizError(error.message))
+      .finally(() => setQuizLoading(false));
+  }, [quiz, quizId]);
+
+  if (quizLoading) {
+    return <div className="quiz-page empty-state"><div><Sparkles size={42}/><h2>Đang tải quiz...</h2><p>VLearn đang lấy dữ liệu quiz từ backend.</p></div></div>;
+  }
+
+  if (!quiz || quizError) {
     return <div className="quiz-page empty-state"><div><GraduationCap size={42}/><h2>Không tìm thấy quiz</h2><p>Hãy quay lại bài giảng và yêu cầu VLearn Tutor tạo quiz.</p><button className="retry" onClick={() => navigate(`/lesson/${LESSON_ID}`)}>Quay lại bài giảng</button></div></div>;
   }
 

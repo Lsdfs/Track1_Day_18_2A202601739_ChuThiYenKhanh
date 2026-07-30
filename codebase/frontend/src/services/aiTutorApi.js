@@ -29,6 +29,13 @@ export async function sendTutorMessage({ lessonId, conversationId, message, hist
   return validateTutorResponse(data);
 }
 
+export async function getQuizById(quizId) {
+  const response = await fetch(`${API_BASE_URL}/quizzes/${encodeURIComponent(quizId)}`);
+  const data = await response.json().catch(() => null);
+  if (!response.ok) throw new Error(data?.message ?? `Quiz API returned ${response.status}`);
+  return validateQuiz(data?.quiz ?? data);
+}
+
 function validateTutorResponse(data) {
   const acceptedTypes = ["text", "lesson-summary", "quiz-ready", "error"];
   if (!data || !acceptedTypes.includes(data.type)) {
@@ -40,8 +47,32 @@ function validateTutorResponse(data) {
   if (data.type === "quiz-ready" && !data.quiz) {
     throw new Error("Quiz response is missing quiz data");
   }
+  if (data.type === "quiz-ready") data.quiz = validateQuiz(data.quiz);
   if (data.download_url?.startsWith("/")) {
     data.download_url = new URL(data.download_url, API_BASE_URL).href;
   }
   return data;
+}
+
+function validateQuiz(quiz) {
+  if (!quiz?.id || !quiz?.title || !Array.isArray(quiz.questions) || quiz.questions.length === 0) {
+    throw new Error("Backend returned an invalid quiz");
+  }
+  quiz.questions.forEach((question, index) => {
+    const validAnswer = Number.isInteger(question.correct_answer)
+      && question.correct_answer >= 0
+      && question.correct_answer <= 3;
+    if (
+      question.id === undefined ||
+      !question.question ||
+      !Array.isArray(question.options) ||
+      question.options.length !== 4 ||
+      question.options.some(option => !String(option).trim()) ||
+      !validAnswer ||
+      !question.explanation
+    ) {
+      throw new Error(`Backend returned an invalid quiz question at index ${index}`);
+    }
+  });
+  return quiz;
 }
