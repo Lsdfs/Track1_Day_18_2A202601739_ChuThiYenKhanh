@@ -110,7 +110,7 @@ function ChatPanel() {
         id: createId(),
         role: "assistant",
         type: "error",
-        message: "Backend AI chưa phản hồi. Kiểm tra FastAPI và cấu hình VITE_API_BASE_URL."
+        message: requestError.message || "Backend AI chưa phản hồi."
       }]);
     } finally {
       setLoading(false);

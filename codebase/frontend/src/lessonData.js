@@ -2,7 +2,7 @@ export const lessonData = {
   id: "day02-business-problem-for-ai",
   title: "Xác định bài toán kinh doanh cho AI",
   fileName: "Day02 - Xác định bài toán kinh doanh - Teacher.pdf",
-  pdfUrl: "/Day02-business-problem.pdf",
+  pdfUrl: "/d2-slide-hackathon.pdf",
   triggerMessage: "tóm tắt cho tôi bài giảng hiện tại",
   loadingMessage: "Đang phân tích nội dung bài giảng...",
   summary: {
