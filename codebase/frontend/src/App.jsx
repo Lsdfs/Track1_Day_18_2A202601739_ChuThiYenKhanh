@@ -7,22 +7,50 @@ import {
 import { BrowserRouter, Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { lessonData } from "./lessonData";
 import { getQuizById, sendTutorMessage } from "./services/aiTutorApi";
+import lessonManifest from "../data/lessons.json";
 
-const LESSON_ID = lessonData.id;
+const LESSONS = lessonManifest.lessons.map((lesson, index) => ({
+  ...lesson,
+  day: `Day ${index + 1}`,
+  pdfUrl: `/${lesson.file}`
+}));
+const DEFAULT_LESSON_ID = "day02-business-problem-for-ai";
 const createId = () => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
 
-function Sidebar() {
+function Sidebar({ activeLesson }) {
+  const navigate = useNavigate();
+  const [openDays, setOpenDays] = useState(() => new Set(LESSONS.map(lesson => lesson.id)));
+  const toggleDay = lessonId => {
+    setOpenDays(current => {
+      const next = new Set(current);
+      next.has(lessonId) ? next.delete(lessonId) : next.add(lessonId);
+      return next;
+    });
+  };
+
   return (
     <aside className="sidebar">
       <div className="side-title"><BookOpen size={20}/><div><b>Học liệu môn học</b><small>Chương, slide và tài liệu đã upload</small></div></div>
-      {["Day 1", "Day 2", "Day 3"].map((day, index) => (
-        <div className={`day ${index === 1 ? "open" : ""}`} key={day}>
-          <div><span>{day}</span><ChevronDown size={16}/></div>
-          <small>{index === 1 ? "2 TÀI LIỆU · STUDYING" : "2 TÀI LIỆU · ACTIVE"}</small>
-          {index === 1 && <button className="active-file"><FileText size={17}/><span>Day02 - Xác định bài toán...</span><CheckCircle2 size={16}/></button>}
+      {LESSONS.map(lesson => (
+        <div className={`day ${openDays.has(lesson.id) ? "open" : ""}`} key={lesson.id}>
+          <button className="day-toggle" onClick={() => toggleDay(lesson.id)}>
+            <span>{lesson.day}</span>
+            <ChevronDown className={openDays.has(lesson.id) ? "rotated" : ""} size={16}/>
+          </button>
+          <small>1 TÀI LIỆU · {activeLesson.id === lesson.id ? "STUDYING" : "ACTIVE"}</small>
+          {openDays.has(lesson.id) && (
+            <button
+              className={`active-file ${activeLesson.id === lesson.id ? "selected-material" : ""}`}
+              onClick={() => navigate(`/lesson/${lesson.id}`)}
+              title={lesson.title}
+            >
+              <FileText size={17}/>
+              <span>{lesson.file}</span>
+              {activeLesson.id === lesson.id && <CheckCircle2 size={16}/>}
+            </button>
+          )}
         </div>
       ))}
-      <div className="day"><div><span>Day 4</span><ChevronDown size={16}/></div><small>3 TÀI LIỆU · ACTIVE</small></div>
     </aside>
   );
 }
@@ -69,7 +97,7 @@ function QuizReadyCard({ response, onOpen }) {
   );
 }
 
-function ChatPanel() {
+function ChatPanel({ lessonId }) {
   const navigate = useNavigate();
   const conversationId = useRef(createId());
   const [input, setInput] = useState("");
@@ -94,7 +122,7 @@ function ChatPanel() {
 
     try {
       const response = await sendTutorMessage({
-        lessonId: LESSON_ID,
+        lessonId,
         conversationId: conversationId.current,
         message: text,
         history: messages
@@ -157,17 +185,16 @@ function ChatPanel() {
   );
 }
 
-function Reader() {
-  const navigate = useNavigate();
+function Reader({ lesson }) {
   return (
     <main className="reader">
-      <div className="reader-toolbar"><button className="selected"><BookOpen size={17}/> Đọc</button><span>Day 2 · Bài giảng</span><a href={lessonData.pdfUrl} download={lessonData.fileName}><Download size={17}/> Tải PDF</a></div>
+      <div className="reader-toolbar"><button className="selected"><BookOpen size={17}/> Đọc</button><span>{lesson.day} · Bài giảng</span><a href={lesson.pdfUrl} download={lesson.file}><Download size={17}/> Tải PDF</a></div>
       <div className="pdf-wrap">
-        <iframe title={lessonData.title} src={`${lessonData.pdfUrl}#toolbar=0&navpanes=0&view=FitH`}/>
+        <iframe key={lesson.id} title={lesson.title} src={`${lesson.pdfUrl}#toolbar=0&navpanes=0&view=FitH`}/>
         <div className="end-card">
           <div className="complete-icon"><CheckCircle2 size={28}/></div>
           <div><b>Bạn đã xem hết bài giảng</b><p>Hãy yêu cầu Tutor tạo quiz hoặc mở quiz gần nhất.</p></div>
-          <button onClick={() => navigate("/lesson/day02")}>Mở VLearn Tutor →</button>
+          <button>Hoàn thành bài giảng</button>
         </div>
       </div>
     </main>
@@ -175,9 +202,12 @@ function Reader() {
 }
 
 function LessonPage() {
+  const { lessonId } = useParams();
+  const activeLesson = LESSONS.find(lesson => lesson.id === lessonId) ?? LESSONS.find(lesson => lesson.id === DEFAULT_LESSON_ID);
+
   return <div className="app">
-    <header className="topbar"><button className="mobile-menu"><Menu/></button><div className="brand"><span>V</span> VLearn</div><div className="doc-title"><FileText size={19}/><div><b>{lessonData.fileName}</b><small>COMP2010 · Lecture material</small></div></div><div className="profile">VI <span>Sinh viên ẩn danh</span></div></header>
-    <div className="workspace"><Sidebar/><Reader/><ChatPanel/></div>
+    <header className="topbar"><button className="mobile-menu"><Menu/></button><div className="brand"><span>V</span> VLearn</div><div className="doc-title"><FileText size={19}/><div><b>{activeLesson.file}</b><small>COMP2010 · {activeLesson.title}</small></div></div><div className="profile">VI <span>Sinh viên ẩn danh</span></div></header>
+    <div className="workspace"><Sidebar activeLesson={activeLesson}/><Reader lesson={activeLesson}/><ChatPanel key={activeLesson.id} lessonId={activeLesson.id}/></div>
     <button className="floating"><MessageCircle/></button>
   </div>;
 }
@@ -208,7 +238,7 @@ function QuizPage() {
   }
 
   if (!quiz || quizError) {
-    return <div className="quiz-page empty-state"><div><GraduationCap size={42}/><h2>Không tìm thấy quiz</h2><p>Hãy quay lại bài giảng và yêu cầu VLearn Tutor tạo quiz.</p><button className="retry" onClick={() => navigate(`/lesson/${LESSON_ID}`)}>Quay lại bài giảng</button></div></div>;
+    return <div className="quiz-page empty-state"><div><GraduationCap size={42}/><h2>Không tìm thấy quiz</h2><p>Hãy quay lại bài giảng và yêu cầu VLearn Tutor tạo quiz.</p><button className="retry" onClick={() => navigate(`/lesson/${DEFAULT_LESSON_ID}`)}>Quay lại bài giảng</button></div></div>;
   }
 
   const questions = quiz.questions;
@@ -218,7 +248,7 @@ function QuizPage() {
   if (submitted) {
     const percent = Math.round(score / questions.length * 100);
     return <div className="quiz-page">
-      <div className="quiz-top"><button onClick={() => navigate(`/lesson/${LESSON_ID}`)}><ArrowLeft size={18}/> Quay lại bài giảng</button><div className="brand"><span>V</span> VLearn</div></div>
+      <div className="quiz-top"><button onClick={() => navigate(`/lesson/${quiz.lesson_id || DEFAULT_LESSON_ID}`)}><ArrowLeft size={18}/> Quay lại bài giảng</button><div className="brand"><span>V</span> VLearn</div></div>
       <div className="result-hero"><Trophy size={36}/><p>HOÀN THÀNH BÀI KIỂM TRA</p><h1>{score}/{questions.length}</h1><b>{percent}% · {percent >= 80 ? "Xuất sắc!" : percent >= 60 ? "Làm tốt lắm!" : "Hãy ôn lại nhé!"}</b><small>Kết quả được chấm theo đáp án và giải thích do tool backend tạo.</small></div>
       <div className="review-list">
         {questions.map((question, index) => {
@@ -236,7 +266,7 @@ function QuizPage() {
   }
 
   return <div className="quiz-page">
-    <div className="quiz-top"><button onClick={() => navigate(`/lesson/${LESSON_ID}`)}><ArrowLeft size={18}/> Quay lại bài giảng</button><div className="brand"><span>V</span> VLearn</div></div>
+    <div className="quiz-top"><button onClick={() => navigate(`/lesson/${quiz.lesson_id || DEFAULT_LESSON_ID}`)}><ArrowLeft size={18}/> Quay lại bài giảng</button><div className="brand"><span>V</span> VLearn</div></div>
     <header className="quiz-header"><div><span className="eyebrow"><GraduationCap size={16}/> QUIZ DO AI TẠO</span><h1>{quiz.title}</h1><p>{quiz.description ?? "Chọn một đáp án đúng nhất cho mỗi câu."}</p></div><div className="progress-ring">{done}<small>/{questions.length}</small></div></header>
     <div className="progress"><i style={{ width: `${done / questions.length * 100}%` }}/></div>
     <div className="questions">
@@ -253,10 +283,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to={`/lesson/${LESSON_ID}`} replace/>}/>
+        <Route path="/" element={<Navigate to={`/lesson/${DEFAULT_LESSON_ID}`} replace/>}/>
         <Route path="/lesson/:lessonId" element={<LessonPage/>}/>
         <Route path="/quiz/:quizId" element={<QuizPage/>}/>
-        <Route path="*" element={<Navigate to={`/lesson/${LESSON_ID}`} replace/>}/>
+        <Route path="*" element={<Navigate to={`/lesson/${DEFAULT_LESSON_ID}`} replace/>}/>
       </Routes>
     </BrowserRouter>
   );
