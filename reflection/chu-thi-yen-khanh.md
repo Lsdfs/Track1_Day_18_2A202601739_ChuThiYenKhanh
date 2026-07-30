@@ -1,6 +1,6 @@
-# Reflection cá nhân – Chữ Thị Yến Khanh
+# Reflection cá nhân – Chu Thị Yến Khanh
 
-- **Mã học viên:** `[Bổ sung mã học viên]`
+- **Mã học viên:** 2A202601739
 - **Nhóm:** K3-Hackathon-VlearnFuture-E403
 - **Dự án:** VLearn AI Tutor
 - **Vai trò:** Frontend và tích hợp luồng AI
