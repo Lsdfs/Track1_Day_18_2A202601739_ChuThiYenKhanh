@@ -8,7 +8,7 @@ from app.prompts import load_prompt
 from app.schemas.chat import ChatRequest, ChatResponse, GeminiTutorOutput
 from app.services.quiz_store import save_quiz
 from app.services.summary_pdf_service import create_summary_pdf
-from app.tools.lesson_summary_tool import get_lesson_content
+from app.tools.lesson_summary_tool import get_lesson_content, resolve_lesson
 
 
 class AIService:
@@ -17,6 +17,10 @@ class AIService:
         self.client = genai.Client(api_key=settings.gemini_api_key) if settings.ai_enabled else None
 
     def run(self, payload: ChatRequest) -> ChatResponse:
+        # Validate the ID against the manifest before sending anything to Gemini.
+        # This blocks unknown IDs and path traversal deterministically.
+        resolve_lesson(payload.lesson_id)
+
         if not self.client:
             return ChatResponse(
                 type="error",
