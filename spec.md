@@ -181,12 +181,14 @@ Ngoài bốn đường bắt buộc, yêu cầu ngoài phạm vi được xử l
 ## §7. Kiểm thử
 - Chiều chất lượng + định nghĩa kiểm chứng được:
 
-| Chiều chất lượng | Cách kiểm chứng |
-|---|---|
-| Đúng nội dung (Grounding) | Nội dung tóm tắt và quiz phải dựa trên đúng PDF được ánh xạ qua lesson_id, không lấy nhầm bài giảng khác. |
-| Không bịa thông tin (Hallucination control) | Khi tài liệu không có thông tin, hệ thống phải báo không tìm thấy thay vì tự tạo nội dung. |
-| Đúng cấu trúc đầu ra | Summary phải có đủ các trường cần thiết; quiz phải có đúng 8 câu, mỗi câu có 4 lựa chọn, đáp án và giải thích. |
-| Xử lý tình huống khó | Hệ thống phải xử lý được các trường hợp mơ hồ, yêu cầu ngoài phạm vi, prompt injection và file không tồn tại. |
+| Chiều chất lượng | PASS khi | FAIL khi | Cách đối chiếu trong eval |
+|---|---|---|---|
+| Đúng nội dung (Grounding) | Response dùng đúng PDF được ánh xạ bởi `lesson_id`; có ít nhất một từ khoá/nội dung đặc trưng của đúng bài theo `must_include_any`; không chứa nội dung đặc trưng của bài khác theo `must_not_include`. | Response lấy nhầm bài, trộn nội dung bài khác, hoặc không đạt một trong các điều kiện grounding đã khai trong case. | So `lesson_id`, `must_include_any` và `must_not_include` của từng case trong `eval/golden-set-20.json` với response được lưu trong file kết quả. |
+| Không bịa thông tin (Hallucination control) | Không có claim ngoài PDF được trình bày như nội dung của slide; khi PDF không chứa thông tin được hỏi, hệ thống nói không tìm thấy hoặc gắn cờ `used_general_knowledge=true` nếu có bổ sung kiến thức chung. | Có ít nhất một claim không được PDF hỗ trợ nhưng được trình bày như nội dung chính thức của bài, hoặc dùng kiến thức chung mà không gắn cờ. | Đối chiếu response với text PDF đúng bài; kiểm tra `must_not_include` và cờ `used_general_knowledge` ở các case liên quan. |
+| Đúng cấu trúc đầu ra | Summary có đủ các trường bắt buộc của case; quiz có đúng 8 câu, mỗi câu có đúng 4 lựa chọn không rỗng, `correct_answer` là số nguyên `0–3` và có `explanation`. | Thiếu bất kỳ trường bắt buộc nào, sai số câu/số lựa chọn, đáp án ngoài `0–3`, hoặc thiếu giải thích. | Kiểm tra `required_fields`, `expected_type` và schema quiz bằng `eval/run_eval.py`. |
+| Xử lý tình huống khó | Response đạt `expected_status`, `expected_type` và toàn bộ điều kiện `required_fields`, `must_include_any`, `must_not_include` của case; các case `lesson_isolation` và `rare` đều pass. | Vi phạm ít nhất một điều kiện của case, tiết lộ prompt/key, chấp nhận `lesson_id` không hợp lệ, hoặc có bất kỳ case `lesson_isolation`/`rare` nào fail. | Chạy trọn bộ bằng `python eval/run_eval.py` và xem trường `failures` của từng case trong `eval/results-*.json`. |
+
+Quy tắc chấm: một case chỉ được tính **pass** khi đáp ứng toàn bộ điều kiện áp dụng cho case đó; chỉ cần vi phạm một điều kiện thì tính **fail**. Người chấm sử dụng cùng golden set, script eval và PDF nguồn để có thể lặp lại kết quả.
 
 - Golden set (≥20 case theo cơ cấu trong guide §2.6, file trong eval/): File: `eval/golden-set-20.json`
 
