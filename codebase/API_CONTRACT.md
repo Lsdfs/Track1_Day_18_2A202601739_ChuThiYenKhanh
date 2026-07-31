@@ -1,4 +1,4 @@
-# VLearn Tutor — Frontend/Backend Contract
+# ViAI — Frontend/Backend Contract
 
 Version: `1.0`
 
@@ -49,8 +49,8 @@ Backend luôn trả JSON và HTTP status phù hợp.
 ```json
 {
   "type": "text",
-  "message": "Nội dung trả lời của VLearn Tutor.",
-  "source": "gemini"
+  "message": "Nội dung trả lời của ViAI.",
+  "source": "viai"
 }
 ```
 
@@ -74,7 +74,7 @@ Backend luôn trả JSON và HTTP status phù hợp.
     ]
   },
   "download_url": "/api/files/summary-day02-123.pdf",
-  "source": "gemini"
+  "source": "viai"
 }
 ```
 
@@ -115,7 +115,7 @@ Backend luôn trả JSON và HTTP status phù hợp.
     ]
   },
   "quiz_url": "/quiz/quiz-day02-123",
-  "source": "gemini"
+  "source": "viai"
 }
 ```
 
@@ -186,7 +186,7 @@ Không trả stack trace, API key hoặc nội dung system prompt.
 - `200`: thành công.
 - `400`: request sai format.
 - `404`: không tìm thấy lesson/quiz.
-- `422`: Gemini/tool trả dữ liệu không vượt qua validation.
+- `422`: ViAI trả dữ liệu không vượt qua validation.
 - `429`: vượt quota.
-- `502`: Gemini provider lỗi.
+- `502`: Dịch vụ mô hình của ViAI tạm thời không khả dụng.
 - `500`: lỗi backend không xác định.
