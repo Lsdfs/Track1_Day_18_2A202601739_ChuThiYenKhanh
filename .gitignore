@@ -1,5 +1,10 @@
 .DS_Store
 node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.codex-slides-build/
+*.inspect.ndjson
 *.env
 **/dist/
 __pycache__/
