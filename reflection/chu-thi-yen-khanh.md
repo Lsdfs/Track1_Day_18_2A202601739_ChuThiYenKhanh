@@ -3,7 +3,7 @@
 - **Mã học viên:** 2A202601739
 - **Nhóm:** K3-Hackathon-VlearnFuture-E403
 - **Dự án:** VLearn AI Tutor
-- **Vai trò:** Frontend và tích hợp luồng AI
+- **Vai trò:** Frontend và tích hợp luồng AIr
 
 ## Vai trò và phần tôi thực hiện
 

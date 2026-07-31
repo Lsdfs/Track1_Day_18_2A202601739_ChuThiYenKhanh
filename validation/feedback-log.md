@@ -79,6 +79,6 @@ Chậm, AI tạo câu trả lời khi tóm tắt và tạo quiz làm chậm, kho
 - [X] Mỗi mẩu có tên/vai trò và quote nguyên văn.
 - [X] Có ít nhất một phản hồi không chỉ là lời khen chung chung.
 - [X] Có ít nhất một thay đổi từ feedback hoặc quyết định giữ nguyên có lý do.
-- [ ] Thay đổi đã được cập nhật vào Changelog của `spec.md`.
+- [X] Thay đổi đã được cập nhật vào Changelog của `spec.md`.
 - [ ] Đã chọn ít nhất 2 quote để đưa vào demo slide.
 

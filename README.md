@@ -1,12 +1,12 @@
 # Mini Hackathon AI — Batch 03
 
-| Thành viên | Vai trò | Công việc |
+## Thành viên và phân công
+
+| Thành viên | Mã học viên | Phần phụ trách |
 |---|---|---|
-| Vũ Quang Tùng | Spec | Viết và cập nhật spec.md, thiết kế JTBD, flow sản phẩm |
-| Chu Thị Yến Khanh | Evidence | Thu thập khảo sát, tổng hợp số liệu, lưu log bằng chứng |
-| Vũ Quang Tùng | Prompt | Thiết kế prompt, xây dựng golden set, kiểm tra các case lỗi |
-| Diêm Công Thành | Code | Xây dựng prototype, tích hợp API AI, xử lý workflow |
-| Chu Thị Yến Khanh | Demo | Chuẩn bị slide, kịch bản demo, quay backup và kiểm tra flow |
+| Vũ Quang Tùng | 2A202601545 | Viết và cập nhật `spec.md`; thiết kế JTBD và flow sản phẩm; thiết kế prompt; xây dựng golden set và kiểm tra các case lỗi |
+| Diêm Công Thành | 2A202601689 | Xây dựng backend và prototype; tích hợp API AI; xử lý workflow tóm tắt, tạo quiz và chấm bài |
+| Chu Thị Yến Khanh | 2A202601739 | Thu thập và tổng hợp evidence; xây dựng frontend và tích hợp luồng AI; chuẩn bị slide, kịch bản demo và ghi log validation |
 
 **SPEC → Prototype → Demo.** Đây không phải cuộc thi code — đây là cuộc thi **tư duy sản phẩm AI**.
 
