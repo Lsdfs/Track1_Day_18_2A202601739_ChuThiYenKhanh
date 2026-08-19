@@ -1,60 +1,67 @@
-# Track 1 – Day 17: Finding & Validating Pain Points
+# Track 1 – Day 18: Multiple Prototypes & Human–AI Design
 
 ## 1. Thông tin cá nhân và nhóm
 
-- **MHV:** 2A202601769
-- **Họ và tên:** Trần Tuấn Trung
+- **MHV:** 2A202601739
+- **Họ và tên:** Chu Thị Yến Khanh
 - **Tên nhóm:** Nhóm Case 2
 - **Thành viên:** Chu Thị Yến Khanh; Trần Tuấn Trung; Nguyễn Trọng Đức
 - **Case:** Case B – AI Notes: Personal Learning Notes
 
-## 2. Problem Hypothesis Brief
+## 2. Hypothesis Problem
 
-| Thành phần | Nội dung |
-| --- | --- |
-| Solution directive | Sau khi học viên hoàn thành bài học, hệ thống dùng nội dung bài, highlights, điểm “chưa hiểu”, câu hỏi và ghi chú cá nhân để chọn lọc, nhóm và tổ chức thành bản ghi chú cá nhân có cấu trúc; học viên chỉnh sửa, xác nhận trước khi lưu. |
-| Capability trung tính | Giúp người học gom, tổ chức và xem lại dấu vết học tập cá nhân sau một bài học. |
-| Actor ưu tiên | Học viên – người trực tiếp ghi chú/highlight và chịu hậu quả nếu quá trình này không hiệu quả. |
-| Situation & Job | Sau bài học, học viên muốn tổ chức lại highlights, ghi chú ngắn và điểm chưa hiểu thành note cá nhân để xem lại. |
-| JTBD | Khi kết thúc bài học có nhiều nội dung quan trọng/chưa hiểu, tôi muốn gom và sắp xếp lại những gì cần nhớ để ôn tập nhanh hơn, đúng trọng tâm hơn. |
-| Pain A | Học viên highlight phần chưa hiểu nhưng khi quay lại thì quên đã highlight hoặc không biết highlight nói về vấn đề gì; các điểm chưa hiểu bị bỏ qua. |
-| Pain B | Khi ôn note trong slide, ghi chú quá nhiều và rải rác khiến học viên khó xem hết/tổng hợp. |
-| Giả thuyết chọn điều tra | Pain A: xuất hiện sớm hơn, ảnh hưởng trực tiếp đến lỗ hổng kiến thức và có thể xảy ra với nhiều học viên hơn. |
+Khi học viên đánh dấu nội dung chưa hiểu trong quá trình học và quay lại ôn tập, họ khó nhận biết phần cần xem lại và khôi phục ngữ cảnh vì highlight/ghi chú ngắn không nêu rõ lý do được tạo ra và dễ bị bỏ quên. Điều này khiến điểm chưa hiểu không được xử lý, làm gián đoạn việc ôn tập và duy trì lỗ hổng kiến thức.
 
-**Problem Hypothesis:** Khi học sinh đánh dấu nội dung chưa hiểu trong quá trình học và quay lại ôn tập, các em khó nhận biết phần cần xem lại và khôi phục ngữ cảnh vì highlights/ghi chú ngắn không nêu rõ lý do tạo ra, dễ bị bỏ quên. Điều này khiến điểm chưa hiểu không được xử lý, gián đoạn ôn tập và duy trì lỗ hổng kiến thức.
+- **Observation nối tiếp từ Day 17:** Người tham gia 001 phải quay lại slide gốc và đọc lại từ đầu để tìm phần đã bỏ sót vì ghi chú bị mất ngữ cảnh. Người tham gia 002 không còn nhớ ghi chú thuộc nội dung nào hoặc dùng để làm gì. Người tham gia 003 thường không quay lại các highlight và phải đọc lại toàn bộ slide rồi dùng AI tạo ghi chú mới.
+- **Điều chưa biết cần validation:** Chưa biết cách thể hiện ngữ cảnh nào giúp học viên nhận ra nhanh nhất lý do tạo ghi chú; mức chủ động phù hợp giữa học viên và AI; và liệu người dùng có tin, kiểm tra và sửa phần AI tổ chức hay không.
 
-**Evidence cần tìm:** Một sự kiện cụ thể trong 7 ngày gần đây; user không nhớ lý do highlight và phải tìm lại ngữ cảnh; có workaround (chụp màn hình, ghi sang app khác, mở lại nhiều slide); có hậu quả; tình huống lặp lại. Giả thuyết cần sửa/bác bỏ nếu đa số không kể được sự kiện, vẫn hiểu ngữ cảnh highlight, tình huống hiếm hoặc không có hậu quả đáng kể.
+## 3. Three Solution Options
 
-## 3. Conversation Guide – phiên bản cuối
+Xem [Three-option Design Sheet](three-option-design-sheet.md).
 
-**Tiêu chí tuyển người:** Người đã học bài giảng, thực sự highlight/ghi chú/ghi nhớ điểm chưa biết hoặc có câu hỏi về bài giảng trong 30 ngày gần đây.
-
-**Recruitment check:** “Trong 7 ngày gần đây, bạn có lần nào đang học mà đã highlight, ghi chú, đánh dấu phần chưa hiểu, ghi lại câu hỏi chưa rõ hoặc lưu nội dung để xem lại sau không?”
-
-**Mở đầu và xin phép:** “Mình muốn tìm hiểu cách bạn ghi lại và xem lại nội dung trong quá trình học. Bạn có thể chia sẻ trải nghiệm thực sự của mình không? Bạn có đồng ý cho mình ghi chép/ghi âm cuộc trao đổi này chỉ phục vụ bài học không?”
-
-**Story opener:** “Kể mình nghe về lần gần nhất bạn học một bài và có ghi chú, highlight hoặc đánh dấu nội dung để xem lại sau?”
-
-1. “Sau lần đó, bạn có quay lại xem những highlight hoặc ghi chú đó không? Kể mình nghe lần bạn quay lại gần nhất.”
-2. “Kể về lần gần nhất có phần nội dung bạn không hiểu hoặc bỏ sót khiến việc học bài mới khó khăn/không theo kịp. Khi đó bạn đã làm gì?”
-3. “Trong lần gần nhất bạn xem lại highlight hoặc ghi chú, có phần nào bạn không nhớ tại sao mình đã đánh dấu không? Lúc đó bạn đã làm gì tiếp theo?”
-
-**Probe:** “Lúc đó chuyện gì xảy ra tiếp theo?”, “Bạn đã làm gì?”, “Vì sao bạn chọn cách đó?”, “Phần nào khó nhất?”, “Việc đó kéo theo hậu quả gì?”
-
-## 4. Practice Reflection
-
-1. Story opener về “lần gần nhất” dẫn vào bối cảnh học trên lớp, ghi chú thuật ngữ/phần chưa hiểu và ôn lại sau đó.
-2. Cần neo Big 3 số 2 vào một sự kiện quá khứ thay vì hỏi chung chung; vì vậy câu hỏi được sửa thành “Kể về lần gần nhất... Khi đó bạn đã làm gì?”.
-3. Guide đã bổ sung story opener, recruitment check và probe bank; chuyển trọng tâm về hành vi, workaround và hậu quả để không pitch solution.
-
-## 5. AI Support Log
-
-| AI đã hỗ trợ gì | Điểm cần kiểm soát | Bạn đã tự xử lý |
+| Option | Mô tả ngắn | Repository và demo |
 | --- | --- | --- |
-| Codex tổ chức README theo tài liệu Lab. | AI không phải nguồn interview data. | Chỉ dùng nội dung từ tài liệu và interview record; không dùng AI tạo facts, quote hay suy diễn user. |
-| Codex định dạng hypothesis, guide và evidence. | Tránh câu hỏi dẫn dắt/lộ solution. | Giữ câu hỏi neo vào “lần gần nhất” và probe về hành vi, workaround, hậu quả. |
+| A – Context Capture | Lưu highlight cùng ngữ cảnh và yêu cầu người học xác nhận lý do. | [Thêm link](prototype-link.md#option-a-context-capture) |
+| B – Question Inbox | Chuyển điểm chưa hiểu thành hàng đợi câu hỏi để người học chủ động xử lý. | [Thêm link](prototype-link.md#option-b-question-inbox) |
+| C – Review Map | AI nhóm dấu vết học tập thành bản đồ ôn tập có liên kết về nguồn. | [Thêm link](prototype-link.md#option-c-review-map) |
+
+## 4. Đóng góp của tôi trong nhóm
+
+- **Option/phần việc phụ trách:** Đã chuẩn bị bản nháp shared test context và ba hướng thiết kế A/B/C để nhóm rà soát; TODO: ghi rõ option chính thức mình phụ trách sau khi nhóm phân công.
+- **Shared context/content đã chuẩn bị:** Problem Hypothesis, ba observation từ Day 17, một task ôn tập chung và bộ input gồm slide, highlight, ghi chú ngắn và điểm chưa hiểu.
+- **Quyết định Human–AI đã tham gia:** Giữ quyền xác nhận, chỉnh sửa, bỏ qua và quay về nguồn cho người học; AI chỉ hỗ trợ lấy ngữ cảnh, nhóm nội dung hoặc đề xuất bước tiếp theo.
+- **Facilitation/observation/tổng hợp feedback:** TODO: điền hoạt động thực tế sau phiên test do Chu Thị Yến Khanh facilitate; không tạo observation hoặc quote khi chưa test.
+
+## 5. Prototype Feedback
+
+- **Feedback Note cá nhân:** [prototype-feedback-note.md](prototype-feedback-note.md)
+- **Group Feedback Synthesis:** [group-feedback-synthesis.md](group-feedback-synthesis.md)
+- **Next Change:** TODO: Điền sau khi tổng hợp đủ ba phiên test.
+- **Still Unproven:** TODO: Điều chưa thể kết luận từ evidence hiện có.
+
+## 6. AI Support Log
+
+Xem [ai-support-log.md](ai-support-log.md).
 
 ## Tệp đính kèm
 
-- [Interview Record](interview/notes.md)
-- [Bản ghi phỏng vấn](interview/recording-link.md)
+- [Three-option Design Sheet](three-option-design-sheet.md)
+- [Prototype links A/B/C](prototype-link.md)
+- [Prototype Feedback Note cá nhân](prototype-feedback-note.md)
+- [Group Feedback Synthesis](group-feedback-synthesis.md)
+- [AI Support Log](ai-support-log.md)
+- [Interview notes từ Day 17](interview/notes.md)
+- [Recording links từ Day 17](interview/recording-link.md)
+
+## Checklist trước khi nộp
+
+- [ ] README có đủ sáu phần và ghi rõ đóng góp cá nhân.
+- [ ] Hypothesis Problem nối với ít nhất một observation Day 17 và nêu điều chưa biết.
+- [ ] A/B/C giải cùng problem và task nhưng khác mechanism hoặc cách chia việc user–AI.
+- [ ] Mỗi option nêu expectation, agency, evidence/uncertainty và recovery.
+- [ ] Ba prototype dùng cùng user, situation, task, content và desired outcome.
+- [ ] Một tester ngoài nhóm tự dùng được cả A/B/C mà không cần facilitator giải thích.
+- [ ] Nhóm có ba Feedback Notes từ ba phiên test.
+- [ ] Group Feedback Synthesis tách pattern, khác biệt, Next Change và Still Unproven.
+- [ ] Tất cả link mở được với giảng viên/TA.
+- [ ] AI Support Log phản ánh đúng phần AI hỗ trợ và phần người nộp tự kiểm soát.
