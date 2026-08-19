@@ -1,10 +1,20 @@
+import json
+import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 
 from app.core.config import settings
-from app.schemas.chat import ChatRequest, ChatResponse, QuizResult, QuizSubmission
+from app.schemas.chat import (
+    ChatRequest,
+    ChatResponse,
+    QuizResult,
+    QuizSubmission,
+    ReviewProposalRequest,
+    ReviewProposalResponse,
+)
 from app.services.ai_service import ai_service
 from app.services.mastery_service import get_mastery, grade_quiz
 from app.services.quiz_store import get_quiz
@@ -79,6 +89,74 @@ def chat(payload: ChatRequest) -> ChatResponse:
             status_code=502,
             detail="ViAI tạm thời chưa xử lý được yêu cầu. Vui lòng thử lại sau.",
         ) from exc
+
+
+@router.post("/review-proposals", response_model=ReviewProposalResponse)
+def create_review_proposals(payload: ReviewProposalRequest) -> ReviewProposalResponse:
+    if not settings.ai_enabled:
+        raise HTTPException(
+            status_code=503,
+            detail="ViAI chưa được cấu hình. Hãy thêm GEMINI_API_KEY vào backend/.env rồi khởi động lại backend.",
+        )
+    try:
+        return ai_service.create_review_proposals(payload)
+    except LessonNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail="ViAI tạm thời chưa tạo được bản ôn tập. Vui lòng thử lại.",
+        ) from exc
+
+
+@router.post("/review-proposals/stream")
+def stream_review_proposals(payload: ReviewProposalRequest) -> StreamingResponse:
+    if not settings.ai_enabled:
+        raise HTTPException(
+            status_code=503,
+            detail="ViAI chưa được cấu hình. Hãy thêm GEMINI_API_KEY vào backend/.env rồi khởi động lại backend.",
+        )
+    try:
+        resolve_lesson(payload.lesson_id)
+    except LessonNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    def event_stream():
+        yield json.dumps({"type": "progress", "stage": "reading", "message": "Đang đọc các dấu vết đã chọn…"}, ensure_ascii=False) + "\n"
+        with ThreadPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(ai_service.create_review_proposals, payload)
+            elapsed = 0
+            while not future.done():
+                time.sleep(1)
+                elapsed += 1
+                if elapsed < 4:
+                    stage, message = "context", "Đang tìm context ở các trang liên quan…"
+                elif elapsed < 10:
+                    stage, message = "grouping", "Đang phân nhóm note và highlight…"
+                else:
+                    stage, message = "writing", "Đang viết nội dung ôn tập và câu tự kiểm tra…"
+                yield json.dumps({
+                    "type": "progress",
+                    "stage": stage,
+                    "message": message,
+                    "elapsed": elapsed,
+                }, ensure_ascii=False) + "\n"
+            try:
+                result = future.result()
+                yield json.dumps({"type": "result", "data": result.model_dump(mode="json")}, ensure_ascii=False) + "\n"
+            except Exception:
+                yield json.dumps({
+                    "type": "error",
+                    "message": "ViAI tạm thời chưa tạo được bản ôn tập. Vui lòng thử lại.",
+                }, ensure_ascii=False) + "\n"
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="application/x-ndjson",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
 
 
 @router.get("/files/{filename}")

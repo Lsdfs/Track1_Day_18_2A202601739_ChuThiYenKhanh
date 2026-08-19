@@ -138,6 +138,51 @@ class ChatResponse(BaseModel):
     source: Literal["viai", "hardcoded"]
 
 
+class ReviewTraceInput(BaseModel):
+    id: str = Field(min_length=1, max_length=160)
+    type: Literal["highlight", "note"]
+    page: int = Field(ge=1)
+    text: str = Field(min_length=1, max_length=5000)
+    source_text: str | None = Field(default=None, max_length=5000)
+    context: str = Field(default="", max_length=5000)
+
+
+class ReviewProposalRequest(BaseModel):
+    lesson_id: str = Field(min_length=1, max_length=120)
+    traces: list[ReviewTraceInput] = Field(min_length=1, max_length=50)
+
+
+class ReviewProposal(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+    confidence: int = Field(ge=0, le=100)
+    uncertain: bool = False
+    rationale: str = Field(min_length=1, max_length=2000)
+    review_draft: str = Field(min_length=1, max_length=12000)
+    context_suggestion: str = Field(default="", max_length=5000)
+    source_ids: list[str] = Field(min_length=1, max_length=50)
+
+
+class GeminiReviewProposal(BaseModel):
+    """Constraint-light schema sent to Gemini; API validation happens afterwards."""
+    title: str
+    confidence: int
+    uncertain: bool
+    rationale: str
+    review_draft: str
+    context_suggestion: str
+    source_ids: list[str]
+
+
+class GeminiReviewProposalOutput(BaseModel):
+    proposals: list[GeminiReviewProposal]
+
+
+class ReviewProposalResponse(BaseModel):
+    proposals: list[ReviewProposal] = Field(min_length=1, max_length=12)
+    message: str = Field(min_length=1)
+    source: Literal["viai"] = "viai"
+
+
 class SubmittedAnswer(BaseModel):
     question_id: str | int
     selected_answer: int = Field(ge=0, le=3)

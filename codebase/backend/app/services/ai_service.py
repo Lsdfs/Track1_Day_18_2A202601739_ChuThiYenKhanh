@@ -1,3 +1,4 @@
+import json
 import time
 import re
 
@@ -11,9 +12,13 @@ from app.schemas.chat import (
     ChatResponse,
     GeminiContextAnswer,
     GeminiQuizOutput,
+    GeminiReviewProposalOutput,
     GeminiSummaryOutput,
     GeminiTutorOutput,
     QuizMetadataOutput,
+    ReviewProposal,
+    ReviewProposalRequest,
+    ReviewProposalResponse,
 )
 from app.services.mastery_service import get_mastery
 from app.services.quiz_store import save_quiz
@@ -237,6 +242,89 @@ class AIService:
             used_general_knowledge=getattr(output, "used_general_knowledge", None),
             source="viai",
         )
+
+    def create_review_proposals(self, payload: ReviewProposalRequest) -> ReviewProposalResponse:
+        """Ask Gemini to turn user-selected traces into editable review proposals."""
+        lesson = get_lesson_content(payload.lesson_id)
+        if not self.client:
+            raise RuntimeError("ViAI chưa được cấu hình khóa truy cập mô hình.")
+
+        trace_data = [trace.model_dump() for trace in payload.traces]
+        relevant_content = self._review_context_for_pages(
+            lesson["content"],
+            {trace.page for trace in payload.traces},
+        )
+        contents = (
+            "Bạn đang tạo BẢN NHÁP ÔN TẬP bằng tiếng Việt từ các note/highlight do người học chọn.\n"
+            "Hãy đọc cả dấu vết và nội dung PDF, rồi đề xuất 1-8 nhóm theo chủ đề thực sự.\n\n"
+            "YÊU CẦU BẮT BUỘC:\n"
+            "- Mỗi source id phải xuất hiện trong ít nhất một nhóm; chỉ dùng id có trong SELECTED_TRACES.\n"
+            "- Không gom các ý không liên quan. Nếu quan hệ chưa rõ, đặt uncertain=true và confidence dưới 70.\n"
+            "- review_draft phải là nội dung có thể dùng để ôn ngay, không phải hướng dẫn người học tự viết.\n"
+            "- Mỗi review_draft gồm: giải thích khái niệm bằng lời dễ hiểu; các ý chính có quan hệ logic; "
+            "một ví dụ/ứng dụng nếu PDF hỗ trợ; và 1-2 câu tự kiểm tra.\n"
+            "- Phân biệt nội dung lấy từ dấu vết với context bổ sung tìm trong PDF. Không bịa ngoài bài học.\n"
+            "- context_suggestion ghi phần kiến thức liên quan còn thiếu mà người học có thể chọn đưa vào; "
+            "để chuỗi rỗng nếu không cần bổ sung.\n"
+            "- rationale giải thích cụ thể vì sao các source được xếp chung.\n"
+            "- Tiêu đề phải nêu đúng kiến thức cần ôn, không dùng tiêu đề chung như 'Các ý cần làm rõ'.\n"
+            "- AI chỉ đề xuất. Không nói rằng nội dung đã được người dùng xác nhận.\n\n"
+            f"LESSON_ID: {lesson['lesson_id']}\n"
+            f"LESSON_TITLE: {lesson['title']}\n\n"
+            f"SELECTED_TRACES:\n{json.dumps(trace_data, ensure_ascii=False, indent=2)}\n\n"
+            f"TRUSTED_PDF_CONTENT (trang được chọn và các trang lân cận):\n{relevant_content}"
+        )
+        models = list(dict.fromkeys([settings.gemini_model, settings.gemini_fallback_model]))
+        response = self._generate_with_fallback(
+            models,
+            contents,
+            types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=GeminiReviewProposalOutput,
+                temperature=0.25,
+            ),
+        )
+        output = response.parsed
+        if not isinstance(output, GeminiReviewProposalOutput):
+            if not response.text:
+                raise ValueError("ViAI không trả về đề xuất ôn tập hợp lệ")
+            output = GeminiReviewProposalOutput.model_validate_json(response.text)
+
+        valid_ids = {trace.id for trace in payload.traces}
+        used_ids: set[str] = set()
+        for proposal in output.proposals:
+            proposal.source_ids = list(dict.fromkeys(
+                source_id for source_id in proposal.source_ids if source_id in valid_ids
+            ))
+            if not proposal.source_ids:
+                raise ValueError("Một nhóm AI đề xuất không có dấu vết nguồn hợp lệ")
+            used_ids.update(proposal.source_ids)
+        missing_ids = valid_ids - used_ids
+        if missing_ids:
+            raise ValueError("AI chưa sử dụng đầy đủ các dấu vết đã chọn; vui lòng tạo lại đề xuất")
+
+        return ReviewProposalResponse(
+            proposals=[ReviewProposal.model_validate(item.model_dump()) for item in output.proposals],
+            message="ViAI đã đọc các dấu vết và nội dung bài để tạo bản nháp ôn tập.",
+            source="viai",
+        )
+
+    @staticmethod
+    def _review_context_for_pages(content: str, selected_pages: set[int]) -> str:
+        """Keep the selected pages and their neighbours to reduce model latency."""
+        wanted_pages = {
+            page
+            for selected_page in selected_pages
+            for page in (selected_page - 1, selected_page, selected_page + 1)
+            if page > 0
+        }
+        page_sections = re.split(r"(?=\[Trang \d+\])", content)
+        relevant_sections = []
+        for section in page_sections:
+            match = re.match(r"\[Trang (\d+)\]", section)
+            if match and int(match.group(1)) in wanted_pages:
+                relevant_sections.append(section.strip())
+        return "\n\n".join(relevant_sections) or content
 
     def _generate_with_fallback(self, models: list[str], contents: str, config):
         response = None
