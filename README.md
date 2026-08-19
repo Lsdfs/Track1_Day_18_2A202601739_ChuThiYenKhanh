@@ -27,17 +27,20 @@ Xem [Three-option Design Sheet](three-option-design-sheet.md).
 
 ## 4. Đóng góp của tôi trong nhóm
 
-- **Option/phần việc phụ trách:** Đã chuẩn bị bản nháp shared test context và ba hướng thiết kế A/B/C để nhóm rà soát; TODO: ghi rõ option chính thức mình phụ trách sau khi nhóm phân công.
+- **Option/phần việc phụ trách:** **Giả định cần nhóm xác nhận:** Chu Thị Yến Khanh phụ trách Option A – Context Capture, chuẩn bị shared test context và phối hợp rà soát độ khác biệt của A/B/C.
 - **Shared context/content đã chuẩn bị:** Problem Hypothesis, ba observation từ Day 17, một task ôn tập chung và bộ input gồm slide, highlight, ghi chú ngắn và điểm chưa hiểu.
 - **Quyết định Human–AI đã tham gia:** Giữ quyền xác nhận, chỉnh sửa, bỏ qua và quay về nguồn cho người học; AI chỉ hỗ trợ lấy ngữ cảnh, nhóm nội dung hoặc đề xuất bước tiếp theo.
-- **Facilitation/observation/tổng hợp feedback:** TODO: điền hoạt động thực tế sau phiên test do Chu Thị Yến Khanh facilitate; không tạo observation hoặc quote khi chưa test.
+- **Facilitation/observation/tổng hợp feedback:** **Giả định cần xác nhận:** Chu Thị Yến Khanh facilitate Tester 001, ghi nhận so sánh A/B/C và đóng góp pattern về traceability, quyền sửa nội dung AI và friction khi context card có quá nhiều trường. Observation prototype hiện vẫn được đánh dấu giả định trong Feedback Note.
 
 ## 5. Prototype Feedback
 
-- **Feedback Note cá nhân:** [prototype-feedback-note.md](prototype-feedback-note.md)
+- **Feedback Note cá nhân – Tester 001:** [prototype-feedback-note.md](prototype-feedback-note.md)
+- **Feedback Note – Tester 002:** [feedback/feedback-note-tester-002.md](feedback/feedback-note-tester-002.md)
+- **Feedback Note – Tester 003:** [feedback/feedback-note-tester-003.md](feedback/feedback-note-tester-003.md)
 - **Group Feedback Synthesis:** [group-feedback-synthesis.md](group-feedback-synthesis.md)
-- **Next Change:** TODO: Điền sau khi tổng hợp đủ ba phiên test.
-- **Still Unproven:** TODO: Điều chưa thể kết luận từ evidence hiện có.
+- **Tình trạng evidence:** Bối cảnh/pain của ba tester có evidence Day 17; observation sử dụng prototype hiện là giả định cần thay bằng ghi chép test thật.
+- **Next Change tạm thời:** Giữ Context Capture làm luồng cơ sở, rút card còn đoạn nguồn, lý do và hành động tiếp theo; Question Inbox và Review Map trở thành bước tùy chọn.
+- **Still Unproven:** Khả năng tự dùng A/B/C, mức giảm thời gian tìm lại, ảnh hưởng của bước xác nhận và mức độ user kiểm tra đầu ra AI.
 
 ## 6. AI Support Log
 
@@ -48,6 +51,8 @@ Xem [ai-support-log.md](ai-support-log.md).
 - [Three-option Design Sheet](three-option-design-sheet.md)
 - [Prototype links A/B/C](prototype-link.md)
 - [Prototype Feedback Note cá nhân](prototype-feedback-note.md)
+- [Feedback Note – Tester 002](feedback/feedback-note-tester-002.md)
+- [Feedback Note – Tester 003](feedback/feedback-note-tester-003.md)
 - [Group Feedback Synthesis](group-feedback-synthesis.md)
 - [AI Support Log](ai-support-log.md)
 - [Interview notes từ Day 17](interview/notes.md)

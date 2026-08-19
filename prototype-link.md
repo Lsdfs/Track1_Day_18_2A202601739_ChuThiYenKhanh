@@ -4,35 +4,35 @@
 
 ## Option A: Context Capture
 
-- **Repository:** `TODO: https://github.com/<account>/<prototype-a-repo>`
-- **Live demo/preview:** `TODO: https://<prototype-a-demo>`
-- **Branch/commit dùng để chấm:** `main` / `TODO: commit hash`
-- **Cách chạy local:** TODO
+- **Repository:** `DÁN URL REPOSITORY A TẠI ĐÂY`
+- **Live demo/preview:** `DÁN URL DEMO A TẠI ĐÂY`
+- **Branch/commit dùng để chấm:** Giả định `main`; dán commit hash thật khi chốt bài.
+- **Cách chạy local giả định:** `npm install` rồi `npm run dev`; thay bằng lệnh thật trong repository nếu stack khác.
 - **Cách bắt đầu test task:** Tạo hoặc mở một highlight, kiểm tra context card và chọn hành động ôn tập tiếp theo.
 
 ## Option B: Question Inbox
 
-- **Repository:** `TODO: https://github.com/<account>/<prototype-b-repo>`
-- **Live demo/preview:** `TODO: https://<prototype-b-demo>`
-- **Branch/commit dùng để chấm:** `main` / `TODO: commit hash`
-- **Cách chạy local:** TODO
+- **Repository:** `DÁN URL REPOSITORY B TẠI ĐÂY`
+- **Live demo/preview:** `DÁN URL DEMO B TẠI ĐÂY`
+- **Branch/commit dùng để chấm:** Giả định `main`; dán commit hash thật khi chốt bài.
+- **Cách chạy local giả định:** `npm install` rồi `npm run dev`; thay bằng lệnh thật trong repository nếu stack khác.
 - **Cách bắt đầu test task:** Chuyển một highlight chưa hiểu thành câu hỏi, kiểm tra nguồn và cập nhật trạng thái.
 
 ## Option C: Review Map
 
-- **Repository:** `TODO: https://github.com/<account>/<prototype-c-repo>`
-- **Live demo/preview:** `TODO: https://<prototype-c-demo>`
-- **Branch/commit dùng để chấm:** `main` / `TODO: commit hash`
-- **Cách chạy local:** TODO
+- **Repository:** `DÁN URL REPOSITORY C TẠI ĐÂY`
+- **Live demo/preview:** `DÁN URL DEMO C TẠI ĐÂY`
+- **Branch/commit dùng để chấm:** Giả định `main`; dán commit hash thật khi chốt bài.
+- **Cách chạy local giả định:** `npm install` rồi `npm run dev`; thay bằng lệnh thật trong repository nếu stack khác.
 - **Cách bắt đầu test task:** Mở bản đồ ôn tập, tìm điểm chưa hiểu, đối chiếu nguồn và chỉnh một nhóm nội dung.
 
 ## Bảng link nhanh
 
 | Prototype | Repository | Live demo |
 | --- | --- | --- |
-| A – Context Capture | TODO | TODO |
-| B – Question Inbox | TODO | TODO |
-| C – Review Map | TODO | TODO |
+| A – Context Capture | Dán URL repository A | Dán URL demo A |
+| B – Question Inbox | Dán URL repository B | Dán URL demo B |
+| C – Review Map | Dán URL repository C | Dán URL demo C |
 
 ## Kiểm tra quyền truy cập
 
