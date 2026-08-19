@@ -1,0 +1,410 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 4804
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F2 18 Tf
+20.6999999999999993 TL
+0.027 0.341 0.647 rg
+51.0236220472441033 790.8663779527558972 Td
+(Xac dinh bai toan kinh doanh cho AI) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 768.1892125984252289 Td
+(Bai hoc huong dan cach chon dung bai toan, dung muc tu dong hoa va thiet lap cac gate ky thuat truoc khi xay) Tj
+T* (dung mot san pham AI.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 731.3388188976377933 Td
+(1. Chon bai toan truoc khi chon cong nghe) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 708.6616535433070112 Td
+(Mot du an AI thuong khong that bai vi thieu model, ma vi chon sai bai toan, sai kien truc hoac khong dat tieu chi) Tj
+T* (dung dung luc. Team can xac dinh ro actor, workflow hien tai, bottleneck va tac dong co the do luong.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 671.8112598425196893 Td
+(2. Khong phai tac vu nao cung can Agent) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 649.1340944881889072 Td
+(Tac vu co input on dinh va logic ro nen dung rule hoac workflow. Tac vu tong hop, tom tat hoac sinh van ban linh) Tj
+T* (hoat co the dung LLM feature. Chi dung Agent khi bai toan co nhieu buoc, nhieu cong cu va trang thai thay doi.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 612.2837007874015853 Td
+(3. Uu tien giai phap don gian nhat) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 589.6065354330708033 Td
+(Bat dau tu rule hoac workflow, sau do moi can nhac LLM feature va Agent. Chi tang do phuc tap khi gia tri bo) Tj
+T* (sung lon hon chi phi, rui ro va do kho van hanh.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 552.7561417322833677 Td
+(4. Sau giai doan cua AI Product Lifecycle) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 530.0789763779526993 Td
+(Quy trinh gom Problem Scoping, Data Readiness, Baseline hoac Model Choice, Build & Eval, Deploy Controls,) Tj
+T* (cuoi cung la Monitor & Iterate. Giua cac giai doan can co gate de quyet dinh tiep tuc hay dung.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 493.2285826771653205 Td
+(5. Metric, baseline va eval la bat buoc) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 470.5514173228345953 Td
+(Khong co metric thi khong biet he thong co tao gia tri hay khong. Khong co baseline thi khong biet AI can tot) Tj
+T* (hon phuong phap nao. Khong co bo eval thi san pham moi chi la demo.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 433.7010236220471597 Td
+(6. Cau tao cua mot AI System) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 411.0238582677164914 Td
+(Mot he thong AI co the gom Model, Context, Planning va Tools, duoc dieu phoi boi system logic. Moi thanh phan) Tj
+T* (tao them gia tri nhung cung keo theo cac failure mode rieng.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 374.1734645669290558 Td
+(7. Problem Statement phai du chat) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 351.4962992125983874 Td
+(Problem Statement can chi ro actor, current workflow, bottleneck, impact, success metric va operational) Tj
+T* (boundary; dong thoi giup suy ra test case va eval metric.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 314.6459055118109518 Td
+(8. Kiem tra AI Readiness va Feasibility) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 291.9687401574802834 Td
+(Truoc khi build, can kiem tra gia tri kinh doanh, baseline, du lieu, kha nang danh gia, muc chap nhan sai,) Tj
+T* (latency, chi phi, logging, rollback va nguoi chiu trach nhiem.) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 255.1183464566928478 Td
+(5 diem can nho) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 232.4411811023621794 Td
+(• Dung kien truc quan trong hon viec chon model manh.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 209.7640157480313974 Td
+(• Bat dau tu rule hoac workflow truoc khi nghi den Agent.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 187.086850393700729 Td
+(• AI Product Lifecycle la mot chuoi gate, khong phai build xong roi moi kiem tra.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 164.4096850393699469 Td
+(• Problem Statement phai dan duoc den metric, eval plan va system boundary.) Tj
+ET
+BT
+/F1 10 Tf
+11.5 TL
+0.094 0.145 0.227 rg
+51.0236220472441033 141.7325196850392786 Td
+(• Feasibility phai xet ca ky thuat, van hanh va gia tri kinh doanh.) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R ]
+/Count 1
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+/F3 7 0 R
+/F4 8 0 R
+/F5 9 0 R
+/F6 10 0 R
+/F7 11 0 R
+/F8 12 0 R
+/F9 13 0 R
+/F10 14 0 R
+/F11 15 0 R
+/F12 16 0 R
+/F13 17 0 R
+/F14 18 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+19 0 obj
+<<
+/Producer (jsPDF 2.5.2)
+/CreationDate (D:20260730133357+07'00')
+>>
+endobj
+20 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 21
+0000000000 65535 f 
+0000005008 00000 n 
+0000006825 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000005065 00000 n 
+0000005190 00000 n 
+0000005320 00000 n 
+0000005453 00000 n 
+0000005590 00000 n 
+0000005713 00000 n 
+0000005842 00000 n 
+0000005974 00000 n 
+0000006110 00000 n 
+0000006238 00000 n 
+0000006365 00000 n 
+0000006494 00000 n 
+0000006627 00000 n 
+0000006729 00000 n 
+0000007073 00000 n 
+0000007159 00000 n 
+trailer
+<<
+/Size 21
+/Root 20 0 R
+/Info 19 0 R
+/ID [ <5CC7BCAE0332EC13C222F25BCFA6F31F> <5CC7BCAE0332EC13C222F25BCFA6F31F> ]
+>>
+startxref
+7263
+%%EOF

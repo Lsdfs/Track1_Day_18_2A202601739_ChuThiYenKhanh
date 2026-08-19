@@ -1,0 +1,22 @@
+{
+  "lessons": [
+    {
+      "id": "day01-ai-llm-foundation",
+      "aliases": ["day01", "day1", "d1"],
+      "title": "AI & LLM Foundation",
+      "file": "d1-slide-hackathon.pdf"
+    },
+    {
+      "id": "day02-business-problem-for-ai",
+      "aliases": ["day02", "day2", "d2"],
+      "title": "Xác định bài toán cho AI",
+      "file": "d2-slide-hackathon.pdf"
+    },
+    {
+      "id": "day03-business-problem-summary",
+      "aliases": ["day03", "day3", "d3"],
+      "title": "Xác định bài toán kinh doanh cho AI — Summary",
+      "file": "d3-slide-hackathon.pdf"
+    }
+  ]
+}

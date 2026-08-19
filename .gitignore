@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.codex-slides-build/
+*.inspect.ndjson
+*.env
+**/dist/
+__pycache__/
+*.py[cod]
+codebase/backend/data/generated/
+codebase/frontend/data/generated/
